@@ -1,0 +1,79 @@
+spread=0000;
+step=1300;
+
+module wallfloor(rad,tyk){
+    for(i=[-180:72:180]){
+ for(j=[0:180:180]){
+    rotate([j,0,i])
+     polygon([
+    [rad+step,0], 
+   [(rad+step)*cos(10),(rad+step)*sin(10)],
+   [(rad+step)*cos(20),(rad+step)*sin(17)],
+   [(rad+step)*cos(30),(rad+step)*sin(20)-40], [(rad-step)*cos(31),(rad-step)*sin(37)+116],
+    [(rad-step)*cos(38)+150,(rad-step)*sin(36.5)],     
+    [(rad-step-tyk)*cos(13),(rad-step-tyk)*sin(48)],
+     [(rad-step-tyk)*cos(13),(rad-step-tyk)*sin(37)+80],
+     [(rad+step-tyk)*cos(36),(rad+step-tyk)*sin(20)-40],
+     [(rad+step-tyk)*cos(20),(rad+step-tyk)*sin(17)],
+     [(rad+step-tyk)*cos(10),(rad+step-tyk)*sin(10)],
+     [(rad+step-tyk)*cos(0),0]
+    ],      
+    paths=[[0,1,2,3,4,5,7,8,9,10,11,12]]);    
+ }}}
+ 
+ module floorwall (heigth, depth,radius,step){
+     translate([0,0,depth])
+ color("grey")linear_extrude(heigth)wallfloor(radius,step);
+ 
+     
+ }
+ 
+ module daylight (heigth, depth,radius,step){
+     //slope
+     translate([0,0,depth])
+ linear_extrude(heigth/4,convexity=10,twist = 2, slices = 10, scale = (0.9), $fn = 12)wallfloor(radius,step);
+     
+      translate([0,0,depth+heigth/4])
+ rotate([0,0,-2])scale([0.9,0.9,1])linear_extrude(heigth/5,convexity=10,twist = 4, slices = 10, scale = (0.8), $fn = 12)wallfloor(radius,step);
+     
+     translate([0,0,depth+heigth/4+heigth/5])
+ rotate([0,0,-6])scale([0.72,0.72,1])linear_extrude(heigth/6,convexity=10,twist = 6, slices = 10, scale = (0.7), $fn = 12)wallfloor(radius,step);
+     
+      translate([0,0,depth+heigth/4+heigth/5+heigth/6])
+ rotate([0,0,-12])scale([0.72*0.7,0.72*0.7,1])linear_extrude(heigth/7,convexity=10,twist = 8, slices = 10, scale = (0.6), $fn = 12)wallfloor(radius,step);
+     
+      translate([0,0,depth+heigth/4+heigth/5+heigth/6+heigth/7])
+ rotate([0,0,-20])scale([0.61*0.5,0.61*0.5,1])linear_extrude(heigth/8,convexity=10,twist = 10, slices = 10, scale = (0.6), $fn = 12)wallfloor(radius,step);
+     translate([0,0,depth+heigth/4+heigth/5+heigth/6+heigth/7+heigth/8])
+ rotate([0,0,-30])scale([0.188,0.188,1])linear_extrude(heigth/9,convexity=10,twist = 12, slices = 10, scale = (0.6), $fn = 12)wallfloor(radius,step);
+ 
+    
+ }
+ 
+ module woodwork(depth){
+  //søyler
+     for(j=[-180:72:180]){
+         rotate([0,0,j])translate([3000,0,depth])color("brown")cylinder(2900,200,200,center=false,$fn=5);
+      
+         //radialer   
+     rotate([0,0,j])translate([5600,0,depth+3000-150])color("green")cube([5000,200,300],center=true); 
+      
+     //stjerner 
+         rotate([0,0,j-72/4])translate([0,900,depth+3000-100])color("green")cube([5500,140,200],center=true); 
+     
+     // bjelker
+     color("chocolate")
+         rotate([0,0,j+180])translate([2600*sin(72),0,depth+3000-100])rotate([0,0,90])cube([3400,200,200],center=true);
+      
+   //trekanter
+     color("yellow")
+     for (m=[-1:2:1]){
+         rotate([0,0,j+180])translate([4400*sin(72),m*1000,depth+3000-100])rotate([0,0,-m*27])cube([3800,200,200],center=true);
+     } 
+ }}
+ for (i=[-7300:3000:0]){
+ translate([spread*sin(i),spread*cos(i),0]){
+     floorwall(4000,i,7000,400);
+ woodwork(i);}
+ daylight(3000,2700,7000,400);
+ }
