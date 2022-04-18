@@ -1,0 +1,183 @@
+// These huts will be printed in dirt/clay and may be rented out to camping tourists, that is the idea anyway. 
+//inspired by some intalian printable clay huts I found on the internet one time. And possibly the "Space Ohoi" CD cover art.
+
+//input parameters
+heigth=2400;
+radius=2000;
+tykkelse=150;
+step=300;
+detail=16;
+tett=2;
+
+$fn=detail;
+
+armchairs(2);
+//tripod();
+outerwalls();
+//wallfloor(radius,tykkelse);
+//outerroof();
+//floor();
+//dummy(radius);
+toilet();
+shower();
+kitchen();
+beds(2);
+table(400,530);
+
+module tripod(){
+    color("yellow")for(i=[0:120:360]){
+        rotate([0,0,i])translate([radius,50,heigth])rotate([0,-42,0])cube([100,50,2.6*heigth],center=true);
+}}
+module floor(rad){
+    for(i=[-120:120:120]){
+ for(j=[0:180:180]){
+    rotate([j,0,i])
+     polygon([
+    [(rad+step)*cos(0),0], 
+   [(rad+step)*cos(10),(rad+step)*sin(10)],
+   [(rad+step)*cos(20),(rad+step)*sin(20)],
+   [(rad+step)*cos(30),(rad+step)*sin(30)-100], [(rad-step)*cos(45),(rad-step)*sin(45)+100],
+    [(rad-step)*cos(60),(rad-step)*sin(60)],
+    [0,0]], 
+    paths=[[0,1,2,3,4,5,6,7,8,9,10,11]]);    
+ }}}
+module wallfloor(rad,tyk){
+    for(i=[-120:120:120]){
+ for(j=[0:180:180]){
+    rotate([j,0,i])
+     polygon([
+    [(rad+step)*cos(0),0], 
+   [(rad+step)*cos(10),(rad+step)*sin(10)],
+   [(rad+step)*cos(20),(rad+step)*sin(20)],
+   [(rad+step)*cos(30),(rad+step)*sin(30)-100], [(rad-step)*cos(45),(rad-step)*sin(45)+100],
+    [(rad-step)*cos(60),(rad-step)*sin(60)],     
+    [(rad-step-tyk)*cos(60),(rad-step-tyk)*sin(60)],
+     [(rad-step-tyk)*cos(45),(rad-step-tyk)*sin(45)+100],
+     [(rad+step-tyk)*cos(30),(rad+step-tyk)*sin(30)-100],
+     [(rad+step-tyk)*cos(20),(rad+step-tyk)*sin(20)],
+     [(rad+step-tyk)*cos(10),(rad+step-tyk)*sin(10)],
+     [(rad+step-tyk)*cos(0),0]
+    ],      
+    paths=[[0,1,2,3,4,5,6,7,8,9,10,11]]);    
+ }}}
+module dummy(rad){intersection(){
+linear_extrude(height=2850, center = false, convexity = 10, twist = 0)
+    floor(rad);
+    sphere(heigth*1.15);
+}}
+module outerwalls(){
+    color("grey")difference(){
+    intersection(){ 
+    linear_extrude(height=2850, center = false, convexity = 10, twist = 0)
+wallfloor(radius,tykkelse); 
+ sphere(heigth*1.15-tykkelse/2);       
+}
+doorhole();
+windowhole();
+smallwindowhole();
+}}
+module outerroof() { 
+ color("grey")intersection(){   
+    dummy(radius);
+color("grey")difference(){
+sphere(heigth*1.15+tykkelse/2);
+    sphere(heigth*1.15-tykkelse/2);
+}}}
+module doorhole(){
+    translate([0,0,1050])rotate([0,-90,0])linear_extrude(height=1900, center = false, convexity = 10, twist = 0)
+    minkowski(){square([1800,600],center=true);
+  circle(100);      
+}}
+module windowhole(){
+    for(i=[-60:120:60]){
+    rotate([0,0,i])translate([0,0,1650])rotate([0,90,0])linear_extrude(height=2900, center = false, convexity = 10, twist = 0)
+    minkowski(){square([500,600],center=true);
+  circle(100);      
+}}}
+
+module smallwindowhole(){
+    for(i=[-60:120:60]){
+        for(j=[-15:30:15]){
+    rotate([0,0,60+i+j])translate([0,0,1150])rotate([0,90,0])linear_extrude(height=2900, center = false, convexity = 10, twist = 0)
+    minkowski(){square([200,300],center=true);
+  circle(100);      
+}}}}
+module beds(num){
+    intersection(){
+    color("white")for (i=[0:1:num-1]){
+  translate([-900,-1500,200+i*800])rotate([0,0,-30])linear_extrude(height=150, center = false, convexity = 10, twist = 0)
+    minkowski(){square([1800,600],center=true);
+  circle(100);      
+}}
+dummy(radius-160);
+}}
+
+module armchairs(number){for(k=[0:1:number-1]){
+    translate([0000,0,0])rotate([0,0,40+(135/number)*k])translate([-1100,0,0])union(){
+     translate([-100,0,300])for(i=[0:1:1]){
+          
+ for(j=[0:-110:-110]){
+     rotate([0,j,0])
+     translate([250,0,0])color("chocolate")linear_extrude(height=20, center = false, convexity = 10, twist = 0)
+    mirror([0,i,0])
+     polygon([
+    [250*cos(0),0], 
+   [252*cos(10),252*sin(10)],
+   [258*cos(20),258*sin(20)],
+   [261*cos(30),262*sin(30)],
+        [250*cos(45),250*sin(45)],[100,210],[0,205],[-150,180],[-160,160],[-160,0]], 
+    paths=[[0,1,2,3,4,5,6,7,8,9,10,11]]);    
+    mirror([0,i,0])color("chocolate")translate([210,300,200])minkowski(){intersection(){cube([400,120,20], center=true);
+        translate([0,0,0])rotate([0,85,-5])cylinder(400,80,20,center=true);}
+        sphere(10);
+    }}}
+    color("green")difference(){
+        cylinder(500,350,315,center=false);
+        translate([180,0,400])rotate([0,85,0])cylinder(750,255,240,center=true);
+        translate([00,0,-120])rotate([90,90,90])cylinder(850,250,250,center=true);
+        translate([00,0,-120])rotate([0,90,90])cylinder(850,250,250,center=true);
+    }}}}
+module kitchen(){
+    
+    intersection(){
+    color("cyan")for (i=[0:1:3]){
+  translate([-950,1700,200+i*200])rotate([0,0,30])linear_extrude(height=15, center = false, convexity = 10, twist = 0)
+    minkowski(){square([1700,600],center=true);
+  circle(100);      
+}}
+dummy(radius-160);
+}
+color("white")translate([-920,1600,-670])rotate([0,0,30])linear_extrude(height=1500, center = false, convexity = 10, twist = 0)
+    minkowski(){square([400,400],center=true);
+  circle(50);      
+}
+    }
+module toilet(){
+    intersection(){
+    color("white")translate([1800,-600,1050])rotate([0,0,0])linear_extrude(height=2100, center = true, convexity = 10, twist = 0)
+    minkowski(){square([600,800],center=true);
+  circle(50); 
+    }
+    dummy(radius-150);
+    }}
+module shower(){
+    intersection(){
+    color("white")translate([1800,600,1050])rotate([0,0,0])linear_extrude(height=2100, center = true, convexity = 10, twist = 0)
+    minkowski(){square([600,800],center=true);
+  circle(50); 
+    }
+    dummy(radius-150);
+    }}
+module table(side,heigth){color("chocolate")translate([0,0,heigth])
+    for(i=[0:120:360]){
+      rotate([0,0,i]){
+          translate([side/sqrt(3),0,0])rotate([0,0,30])translate([-side/2,-side/4,0])cube([side*2,side,20],center=true); 
+          translate([side/sqrt(3)+side/2,0,0])cylinder(20,side/2,side/2,center=true);
+    translate([side,0,-heigth/2])cylinder(heigth,20,40,center=true);
+          
+              translate([side/sqrt(3),0,0])rotate([0,0,30])translate([-side/2,side/8,-heigth/2])cube([side,side,20],center=true); 
+          translate([side/2/sqrt(3)+side/3,0,-heigth/2])cylinder(20,side/3,side/3,center=true);
+          }}}
+module modularfurniture(){}
+module underground(){}
+
