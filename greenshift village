@@ -1,0 +1,66 @@
+// These huts will be printed in dirt/clay and may be rented out to camping tourists, that is the idea anyway. 
+//inspired by some intalian printable clay huts I found on the internet one time. And possibly the "Space Ohoi" CD cover art.
+
+//input parameters
+heigth=2400;
+radius=2000;
+tykkelse=150;
+step=300;
+detail=16;
+tett=2;
+
+
+module floor(rad){
+    for(i=[-120:120:120]){
+ for(j=[0:180:180]){
+    rotate([j,0,i])
+     polygon([
+    [(rad+step)*cos(0),0], 
+   [(rad+step)*cos(10),(rad+step)*sin(10)],
+   [(rad+step)*cos(20),(rad+step)*sin(20)],
+   [(rad+step)*cos(30),(rad+step)*sin(30)-100], [(rad-step)*cos(45),(rad-step)*sin(45)+100],
+    [(rad-step)*cos(60),(rad-step)*sin(60)],
+    [0,0]], 
+    paths=[[0,1,2,3,4,5,6,7,8,9,10,11]]);    
+ }}}
+
+module dummy(rad){
+    difference(){
+    intersection(){
+linear_extrude(height=2850, center = false, convexity = 10, twist = 0)
+    floor(rad);
+        sphere(heigth*1.15);
+}
+doorhole();
+windowhole();
+smallwindowhole();
+}}
+
+
+module doorhole(){
+    translate([0,0,1050])rotate([0,-90,0])linear_extrude(height=1900, center = false, convexity = 10, twist = 0)
+    minkowski(){square([1800,600],center=true);
+  circle(100);      
+}}
+module windowhole(){
+    for(i=[-60:120:60]){
+    rotate([0,0,i])translate([0,0,1650])rotate([0,90,0])linear_extrude(height=2900, center = false, convexity = 10, twist = 0)
+    minkowski(){square([500,600],center=true);
+  circle(100);      
+}}}
+
+module smallwindowhole(){
+    for(i=[-60:120:60]){
+        for(j=[-15:30:15]){
+    rotate([0,0,60+i+j])translate([0,0,1150])rotate([0,90,0])linear_extrude(height=2900, center = false, convexity = 10, twist = 0)
+    minkowski(){square([200,300],center=true);
+  circle(100);      
+}}}}
+
+module village (huts,rings){
+    for (i=[360/huts:360/huts:360]){
+        for (j=[1:1:rings]){
+rotate([0,0,i+j*20])translate([8*radius+radius*8*j,0,0])rotate([0,0,i/4+j*40])dummy(radius);
+}}}
+
+village(8,3);
