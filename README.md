@@ -1,7 +1,7 @@
 # GreenShift
-Sometimes it is important to try out ones ideas.
+Sometimes it is important to hear out ones ideas.
 I call this idea GREEN SHIFT CAMPING.
-It is an opens-source-establishment that is run as a place to stay width cabins for rent. Beneath the surface it should also be a place to develop and to teach ways to live that does not harm the planet. People in modern western society should be presented with ways to reform their lifestyle to something that could meet the demands of 2050. Westerners would come to relax for a couple of days and be tempted to change their lifestyle more or less drastically, in order for their children to be able to master the future. My idea conscerns intself with finding a kind of innocense that we western modern society lack today. At this place, then, open source technology, philosophy and morals is to be showcased to visitors and readers. At the same time all findings and accomplisments is to be documented online. 
+It is an opens-source-establishment that is run as a place to stay width cabins for rent. Beneath the surface it should also be a place to develop and to teach ways to live that does not harm the planet. People in modern western society should be presented with ways to reform their lifestyle to something that could meet the demands of 2050. Visitors would come to relax for a couple of days and be tempted to change their lifestyle more or less drastically, in order for their children to be able to master the future. My idea conscerns intself with finding a kind of innocense that western modern society lack today. At this place, then, open source technology, philosophy and morals is to be showcased to visitors and readers. At the same time all findings and accomplisments is to be documented online. 
 
 In the case of energy, this center should have a geo-temperature system that extracts what heat is needed for heating and perhaps also electricity from the earth. Thus we have a group of buildings interconnected with a star topology with distribution of heat and electricity, and also communications from the center building. Energy aspects is largely what shapes the outline of this idea of mine, along with the different sets of inspirations i have been exposed to. CO2 emissions should also be kept at a minimum and hence we must take into account the thermodynamics, gravity and lots of other physical laws and technical diciplines. No doubt there will be a lot to learn in the process of trying to realize such an idea.
 
@@ -42,14 +42,13 @@ Then, once at the surface and covered with floor, the outer walls of the center 
 Where should this village be placed, then. Should it be by the seaside? There is a lot of that around here, as my whole region is located on numerous islands. To get some space between the village huts the whole structure should be claiming a fairly big area. The area should not be processed more than neccessery, but still it is hard to combine with traditional agriculture land, I guess. So avoiding traditional agriculture land this village is left with fairly flat small islands with no present settlement or plains of hight altitude. The former would get few visitors and the latter would be next to impossible to get permission to use, i imagine, in my home region. There also could be possibilities on private properties that is less suited for agriculture due to less favorable sun or soil properties.
 Seaside would mean possibilities for hunting and gathering as well as recreations like boats and ROV-flying.
 A site near sea-level probably should be avoided since tidal variations could well cause complications as extreme weather gets more extreme. A plain of high altitude with a view to the sea sounds perfect to me, but perfect is rarely an option. 
-My reason for publishing this now is that times seem to be growing hard, and perhaps someone finds use in realizing parts of these plans for quick or cheap housing or for some other goal.
+My reason for publishing this now is that times may be growing difficult, and perhaps someone finds use in realizing parts of these plans for quick or cheap housing or for some other goal. I hope this kind of post-apocalyptical self-sufficientcy will not be needed for a while, and at the same time I hope we can learn to slow down life and enjoy providing for ourselves.
 
-If I were to realize these plans or dreams, the following things should be rendered beforehand:
+If I ever were to realize these plans or dreams, the following things should be rendered beforehand:
 
 One stirlingmachine or something that could be converted into one.
 One big plastic-granola 3D-printer that can provide large structural parts, for waterways amongst other things.
 A Youtube channel and some kickstarter-like attention.
 Backhoe tractor.
 A piece of land to build on.
-Permission from gouvernments.
-Permission from the wife.
+Permission from proper authorities.
