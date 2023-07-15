@@ -1,1 +1,53 @@
+# Greenshift-school-of-thought
+A sort of philosophical manual and reading list to get going in this particular transcendental take on distributed manufacturing
 
+Dear Nikolai, my boy, You will turn 10 this spring of 2023.
+I figured that if I were to address this repo to you, then your generation could tag along at will. As this whole greenshift consept unfolds in my head, my reason to act on it and write things down is for you and me to have something meaningful to do that also helps out the planet.
+You know the girls are skilled in lots of ways, they could manage all kinds of things.
+You and me, Nikolai, are diggers and machine builders. We could consentrate on this. And it would occupy us for quite some time, it would seem.
+
+If say a million households were to use this or some other way of reducing household waste dramatically as well as reducing the need for commodities shipped internationally or even regionally. That would affect world economy to some extent and slow it down. That would be a good thing in my opinion.
+Slower economy would probably raise cost of living for those dependant on world economy in daily life. Pollution would slow down and households would be more tempted to manufacture for themselves. If however the world economy or the shipping industry should stop for some reason, those with access to home manufacturing woud be very lucky indeed. Both cases would benefit the planet, I think. That is enough about the "why" for now, let us look at the "what" and the "how".
+
+The main goal of our effort is to establish a in-house recycle system with machines and solutions and provide enough documentations for others to copy. This should be accomplished at very low cost, although this makes it more complicated.
+Now Toreau initially lists up the four things we humans really need. Let's try to present the recycle system in the same order.
+
+*Food*
+I have got some ideas on compost of food leftovers, there is one compost bin model half done, but I have not yet built it. The idea is using mushroom spores for perhaps composting, and at least growing new foods for the household in the composted soil. For providing the correct spores without buying them I have an idea for a spore collector unit that we will have to come back to. Also, I hope to experiment with the "Skoghage" way of growing food as it seems fun.
+But it is rather thin on food for now, as is Project Camp's food account at the moment. Making honey like "Way Out West" makes sense as we both ar sweet-toothes.
+
+*Shelter*
+At present, we live in a house and will probably continue doing so, but the clay hut is greenshifts initial idea that started the whole chain of thoughts and so we need to try to get to the point of prototyping the Hut printer and trying out the design. Maybe as the outdoor rocket stove sauna at home. The whole multi-story underground workshop-facility we might never try out, although a small-scale model is tempting to build. But realistically, the ideal place for a full fledged greenshift machine multi dicipline workspace is one of those many northern norwegian small farms. It typically has three or more modest buildings, resident house and barn at the very least, it has been run as modest farms at some point and has large enough area at a low enough price to make it worth thinking about. I have come to think about the traditional norhtern norwegian "fisherman-farmer" as the model to strive for as they would home-manufacture most of what they needed to get some quite complex and even dangerous tasks done back in the day. My knowledge of the details here is still scarce, but they really had some impressive home industry going at tight budgets at all these little farms scattered up the coast. So repurpousing the same farm properties and the same buildings to live and practice a new open-source based self-sustaining home industry seems both possible and appropriate, with or without public roads or electrical grids.
+
+*Clothing*
+Kniterate and Personal Jaquard loom machines should be built and tested. But for our household application, a worn-out-clothes shredder combined with an automatic spinning-device of some sort would be cool to have. Also, a clothes part loom for near additive manufacturing of jeans would be an useful invention.
+So, in total on the clothing side, automatic knitted sweaters, t-shirts and underwear, while jeans and jackets sown from parts out of the clothes-part-loom would go a long way in meeting the clothing need of a family. No need for storing much clothes, manufacturing from parametric models should be quick, fun, fast and would literally be tailored. 
+Raw materials should preferrably be recyceled, but for science one should try out alternatives to cotton. Linen is hard to grow in our region, so hemp or bamboo is more likely to be useful. I'm curious as to weather one could spin thread from "myrull" found in abundance on wetlands in our region. Or perhaps the Dandelion seed brush, that one is certainly not hard to come by. 
+
+*Fuel* wich in our day and age should translate to both *heating* and *electrical* combined
+In the Greenshift center idea, a wood-fueled sterling machine provides both heating and electricity. Perhaps with access to running water one could get a small sterling machine running with solar, but that is a whole science in itself. In smaller scaled systems I belive home built solar panels from bare cells is the key if one can get it in bulk. For my initial test i plan to use discarded double-layer-windows and slip the solar cells inside, and then cooling them while heating something else, preferrably something that will magazine the heat for a while. Thus the heating will be solar-thermal and the electricity will be photovoltaic, cooled for better performance and longevity. More on this when we have made some progress. One shoud have MPPT, and there are a couple of open hardware variants out there. I would like to build the one from Tech Builder for starters. It would be cool to see one MPPT based on RP2040 though. If one has a creek I think micro-hydro-power with MPPT could be a good idea. 
+
+*Machines*
+This order of needs derived from Toreau sadly doesn't start with a big fat 3D-printer like all my ideas seem to start with. So we add the "machines" headline to emphasis that many of the things we need to build does start with a big 3D-printer. Currently the first "smearon" ultra low cost core-xy big 3D-printer is being built at home at slow pace, interrupted by our summer-brake in 2023. When that is operational with auto-bed-leveling, it should be able to print coarse objects up to 450cm*450cm*300cm with 1mm nozzle. Next step is to grind household plastics and fuse it into new filament. After that we can consentrate on the other various machines. Perhaps the clothing machines are next in line, as I find clothing stores uncomfortable. Or perhaps an open PNP-machine should be next, as it is useful for all the others, and streamlining the all-machine-controller design is a good thing to do early on. It migth even provides us some income on the way. 
+
+*Know-how*
+As this is meant to be a ultra-low-cost way to make the household off grid Build-Of-Material-wise, it requires a tromendeous ammount of knowledge and technical skill to realize, even to replicate with detailed guides provided. This is not a bad thing. Consider it part of your training. Having taught electronics to 16-yearolds for 8 years I think the best way to learn electronics or engineering or physics is to build 3D-printers. The knowledge the two of us will have after building and running these machines for a while will be our most valuable possetion, I think. To open-source that would perhaps not be the most economical thing to do, but it will be the right thing to do. Besides, we are not trying to make money, we are saving the world from having to make money.
+
+Books to read:
+Walden, life in the woods,
+The essential Margaret Fuller,
+Bible
+
+
+Films to watch:
+Fight Club,
+Captain Fantastic,
+Pig
+
+Youtube channels that have inspired:
+Precious Plastic,
+Project Camp,
+GreatScott,
+Just Have A Think,
+Way Out West Workshop Stuff,
+Off Grid Garage,
