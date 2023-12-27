@@ -75,17 +75,31 @@ module wallfloor(rad,tyk){
  }}
  
  module deckplanks(depth){
-     color("brown")translate([0,0,depth+3000])
+     color("chocolate")translate([0,0,depth+3000])
      intersection(){
      linear_extrude(50)projection(cut=false)     
      daylight(2900,2700,6500,200);
-         for(i=[-8000:55:8000])translate([i,00,0])cube([40,15000,50],center=true);
+         for(i=[-8000:55:8000])translate([i,00,0])cube([30,15000,50],center=true);
              }
  }
+ module stairhole(){
+ translate([-4000,0,2000])for(j=[-50:15:50])rotate([0,0,j+23])translate([-2500,0,0])cube([2500,1000,2000],center=true);
+     
+ }
+  module stairs(){
+ color("beige")for(j=[-90:8:50])translate([-4000,0,800+j*23])rotate([0,0,j+23])translate([-2500,0,0])cube([2500,300,50],center=true);
+     
+ }
+ //difference(){
  for (i=[-7300:3000:0]){
  translate([spread*sin(i),spread*cos(i),0]){
-     floorwall(4000,i,7000,400);
+     //floorwall(4000,i,7000,400);
  woodwork(i);}
  //daylight(3000,2700,7000,400);
+ difference(){
  deckplanks(i);
+     stairhole();
  }
+ 
+ }
+ stairs();
