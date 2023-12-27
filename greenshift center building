@@ -70,12 +70,22 @@ module wallfloor(rad,tyk){
    //trekanter
      color("yellow")
      for (m=[-1:2:1]){
-         rotate([0,0,j+180])translate([4400*sin(72),m*1000,depth+3000-100])rotate([0,0,-m*27])cube([3800,200,200],center=true);
+         rotate([0,0,j+180])translate([4400*sin(72),m*1000,depth+3000-100])rotate([00,0,-m*27])cube([3800,200,200],center=true);
      } 
  }}
+ 
+ module deckplanks(depth){
+     color("brown")translate([0,0,depth+3000])
+     intersection(){
+     linear_extrude(50)projection(cut=false)     
+     daylight(2900,2700,6500,200);
+         for(i=[-8000:55:8000])translate([i,00,0])cube([40,15000,50],center=true);
+             }
+ }
  for (i=[-7300:3000:0]){
  translate([spread*sin(i),spread*cos(i),0]){
      floorwall(4000,i,7000,400);
  woodwork(i);}
- daylight(3000,2700,7000,400);
+ //daylight(3000,2700,7000,400);
+ deckplanks(i);
  }
