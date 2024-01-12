@@ -1,0 +1,165 @@
+//this is the parts for the polargraph as I have used them at school. Zip files was downloaded from Sandy Nobles Polargraph page. What a man!
+//Motors are Nema17, Gondola I found on Thingiverse. The motor flanges as well. Strings are curtain cords, the kind with plastic balls close together. I suspect the other kind fits just as well.
+//Drivers for nema motors are dual H-bridge ones. 14-pins with small line-type circuit boards. The little shelves on the motorholders are for these.
+
+//****    Weigths     ******
+for(i=[-1:2:1]){
+translate([-17,-4*i,0])
+rotate([0,35,0])
+color("yellow")
+translate([0,0,4])
+rotate([45,0,0])
+cube(5,cente=true);
+
+translate([-17,-4*i,0])
+rotate([0,35,0])
+color("yellow")
+translate([0,0,10])
+rotate([45,0,0])
+cube(5,cente=true);
+
+translate([-17,-4*i,0])
+rotate([0,35,0])
+color("yellow")
+translate([0,0,16])
+rotate([45,0,0])
+cube(5,cente=true);
+}
+difference(){
+    minkowski(){
+    union(){
+sphere(20,$fn=5);
+translate([0,0,-40])sphere(20,$fn=5);
+translate([0,0,-20])cylinder(40,20,20,$fn=5,center=true);
+    }
+  sphere(2);  
+}
+sphere(20,$fn=5);
+translate([0,0,-40])sphere(20,$fn=5);
+translate([0,0,-20])cylinder(40,20,20,$fn=5,center=true);
+cylinder(50,3,3,$fn=12);translate([20,0,3])sphere(20,$fn=7);    
+}
+
+//*****       Motor and Arduino Uno holders           *******
+
+//polargraph fester
+hoyde=-4;
+difference(){
+    union(){
+        festeklump();
+       unoholder();
+
+}
+translate([275,340,-3])cube([100,200,100],center=true);
+translate([250+25,200-20,-32])
+difference() {
+  body();
+}
+shaft();
+translate([250+25,-200+20,-32])
+difference() {
+  body();
+}
+translate([250+25,-200+20,-2])cylinder(80,12,12,center=true);
+    translate([250+25,200-20,-2])cylinder(80,12,12,center=true);
+  table();
+    translate([250+25,200-20,-28])screw_holes();
+     translate([250+25,-200+20,-28])screw_holes();
+}
+
+module body() {  
+  difference() {
+    union() {
+      color("slategray")
+      linear_extrude(39)
+        base_sketch();
+      color("silver")
+        translate([0,0,39])
+          linear_extrude(0.2)
+            base_sketch();
+      circular_base();
+    }
+    middle_cut();
+  }
+}
+
+module screw_holes() {
+  $fn=60;
+  d=44;
+  r=d/2;
+  for(i=[45:90:360])
+    rotate([0,0,i])
+      translate([r,0,39.2-6])
+        cylinder(d=3.5, h=7.2);
+}
+
+module shaft() { 
+  $fn=60;
+  translate([0,0,40.95])
+    cylinder(d=5,h=21);
+}
+
+module circular_base() {
+  color("slategray")
+    translate([0,0,39.2])
+      linear_extrude(1.75)
+        circle(d=22);
+}
+
+module middle_cut() {
+  translate([0,0,7])
+    linear_extrude(18)
+      chamfer(53);
+}
+
+module chamfer(amt) {
+  rotate([0,0,45])
+    difference() {
+      square(100, true);
+      square(amt, true);        
+    }
+}
+
+module base_sketch() {  
+  difference() {
+    square(43, true);
+    chamfer(55);
+  }
+}
+module table(){
+   translate([0,0,-3]) cube([500,400,23],center=true);
+    }
+module driverholder(){
+   for (i=[-1,2,1]){
+      translate([250+19,i*148,-3])difference(){
+          translate([0,0,0])cube([29,19,29],center=true);
+          translate([5,0,0])cube([35,15,25],center=true);
+          translate([5,i*-10,0])cube([25,15,15],center=true);
+          
+          }
+   } 
+}
+  module festeklump(){
+      for (i=[-1,2,1]){
+          difference(){
+    intersection(){
+        union(){
+translate([(250+4),(200-20)*i,hoyde])cube([80,47,32],center=true);
+        driverholder();
+        }
+translate([250+20,(200-20)*i,hoyde])rotate([0,0,-45*i])cube([124,75,32],center=true);
+}
+translate([250-10,(200-20)*i,hoyde-10])rotate([0,0,0])cube([8,8,20],center=true);
+translate([250-10,(200-40)*i,hoyde-9])rotate([0,0,0])cube([8,40,8],center=true);
+}}
+  }  
+module unoholder(){
+    translate([0,0,8.5])difference(){
+        translate([263,0,0])cube([22,86,61],center=true);
+    translate([268,0,0])cube([25,80,55],center=true);
+        translate([268,0,0])cube([18,100,50],center=true);
+}
+translate([243,0,-3])cube([23,86,38],center=true);
+}
+
+//
