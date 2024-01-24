@@ -162,4 +162,28 @@ module unoholder(){
 translate([243,0,-3])cube([23,86,38],center=true);
 }
 
-//
+//   *****    Wall-mount for motor holders  *****
+//Polargraph veggoppheng
+rund=5;
+difference(){
+union(){
+minkowski(){
+cube([40-rund*2,40-rund*2,16],center=true);
+    cylinder(2,rund,rund,center=true);
+}
+translate([10,10,22/2])
+minkowski(){
+cube([60-rund*2,60-rund*2,22-rund*2],center=true);
+    sphere(rund);
+}
+}
+
+translate([10,10,0])
+cylinder(100,2,2,center=true);
+translate([-10,-10,0])
+cylinder(100,2,2,center=true);
+translate([10,10,0])
+cylinder(30,4,6,center=false);
+translate([-10,-10,0])
+cylinder(30,4,6,center=false);
+}
