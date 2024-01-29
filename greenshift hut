@@ -4,33 +4,44 @@
 //input parameters
 heigth=2400;
 radius=2000;
-tykkelse=150;
+tykkelse=140;
 step=300;
-detail=16;
+detail=36;
 tett=2;
 
 $fn=detail;
-
-armchairs(2);
+//hat();
+armchairs(1);
 //tripod();
-outerwalls();
+//outerwalls();
 //wallfloor(radius,tykkelse);
 //outerroof();
-//floor();
+
+floor(radius);
 //dummy(radius);
-toilet();
-shower();
+//toilet();
+//shower();
 kitchen();
 beds(2);
 table(400,530);
+tableshelf(400,530);
+
+module roofmounts(){
+    for (i=[-1:2:1])
+        for(j=[0:120:360])
+            rotate([0,0,j])
+    translate([1850,900*i,1660])
+        rotate([0,15,0])
+    cylinder(150,50,80,center=true, $fn=5);
+}
 
 module tripod(){
     color("yellow")for(i=[0:120:360]){
         rotate([0,0,i])translate([radius,50,heigth])rotate([0,-42,0])cube([100,50,2.6*heigth],center=true);
 }}
 module floor(rad){
-    for(i=[-120:120:120]){
- for(j=[0:180:180]){
+    for(i=[-120.1:120:120.1]){
+ for(j=[0:180:181]){
     rotate([j,0,i])
      polygon([
     [(rad+step)*cos(0),0], 
@@ -63,7 +74,7 @@ module wallfloor(rad,tyk){
 module dummy(rad){intersection(){
 linear_extrude(height=2850, center = false, convexity = 10, twist = 0)
     floor(rad);
-    sphere(heigth*1.15);
+    sphere(heigth*1.16);
 }}
 module outerwalls(){
     color("grey")difference(){
@@ -77,12 +88,27 @@ windowhole();
 smallwindowhole();
 }}
 module outerroof() { 
- color("grey")intersection(){   
-    dummy(radius);
+    difference(){
+ color("grey")intersection(){    
+        dummy(radius+1);    
 color("grey")difference(){
 sphere(heigth*1.15+tykkelse/2);
     sphere(heigth*1.15-tykkelse/2);
-}}}
+}}
+cylinder(4000,110,100,$fn=20,center=false);
+translate([0,0,2655])spiral(102);
+}
+roofmounts();
+}
+module hat(){
+  translate([0,0,2655])spiral(93);  
+  translate([0,0,2500])rotate_extrude($fn=36) polygon( points=[[50,130],[100,150],[100,200],[100,320],[300,320],[50,400]] );  
+}
+module spiral(radius){
+for(i=[0:5:3600])rotate([0,0,i])
+        translate([radius,0,10+i/30])
+rotate([90,0,0])sphere(10,$fn=3);
+}
 module doorhole(){
     translate([0,0,1050])rotate([0,-90,0])linear_extrude(height=1900, center = false, convexity = 10, twist = 0)
     minkowski(){square([1800,600],center=true);
@@ -105,12 +131,28 @@ module smallwindowhole(){
 module beds(num){
     intersection(){
     color("white")for (i=[0:1:num-1]){
-  translate([-900,-1500,200+i*800])rotate([0,0,-30])linear_extrude(height=150, center = false, convexity = 10, twist = 0)
-    minkowski(){square([1800,600],center=true);
+        rotate([0,0,240])
+  translate([1750,-10,200+i*800])linear_extrude(height=150, center = false, convexity = 10, twist = 0)
+    minkowski(){square([600,1800],center=true);
   circle(100);      
 }}
 dummy(radius-160);
-}}
+}
+for(i=[-1:2:1])
+    for(j=[250:800:1100])
+    rotate([0,0,240])
+translate([1650,i*1002,j])
+rotate([90,0,0])
+color("red")linear_extrude(20)
+    difference(){
+minkowski(){
+ circle(70);
+ square([10,150]); 
+    
+}
+translate([00,140])circle(40);
+}
+}
 
 module armchairs(number){for(k=[0:1:number-1]){
     translate([0000,0,0])rotate([0,0,40+(135/number)*k])translate([-1100,0,0])union(){
@@ -173,11 +215,17 @@ module table(side,heigth){color("chocolate")translate([0,0,heigth])
       rotate([0,0,i]){
           translate([side/sqrt(3),0,0])rotate([0,0,30])translate([-side/2,-side/4,0])cube([side*2,side,20],center=true); 
           translate([side/sqrt(3)+side/2,0,0])cylinder(20,side/2,side/2,center=true);
-    translate([side,0,-heigth/2])cylinder(heigth,20,40,center=true);
+    difference(){translate([side,0,-heigth/2])cylinder(heigth,20,40,center=true);
           
-              translate([side/sqrt(3),0,0])rotate([0,0,30])translate([-side/2,side/8,-heigth/2])cube([side,side,20],center=true); 
-          translate([side/2/sqrt(3)+side/3,0,-heigth/2])cylinder(20,side/3,side/3,center=true);
+              //translate([side/sqrt(3),0,0])rotate([0,0,30])translate([-side/2,side/8,-heigth/2])cube([side,side,20],center=true); 
+          translate([side/2/sqrt(3)+side/3,0,-heigth/2])cylinder(40,side/3+8,side/3+8,center=true);}
+          }
+          }}
+    module tableshelf(side,heigth){
+              for(i=[0:120:360]){
+      rotate([0,0,i]){
+color("chocolate")translate([side/sqrt(3),0,0])rotate([0,0,30])translate([-side/2,side/8,heigth/2])cube([side,side,20],center=true); 
+color("chocolate")translate([side/2/sqrt(3)+side/3,0,heigth/2])cylinder(20,side/3+0,side/3+0,center=true);   
           }}}
 module modularfurniture(){}
 module underground(){}
-
