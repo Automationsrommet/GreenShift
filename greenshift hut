@@ -13,19 +13,19 @@ $fn=detail;
 //hat();
 armchairs(1);
 //tripod();
-//outerwalls();
+outerwalls();
 //wallfloor(radius,tykkelse);
 //outerroof();
 
-floor(radius);
+//floor(radius);
 //dummy(radius);
 //toilet();
 //shower();
 kitchen();
 beds(2);
-table(400,530);
-tableshelf(400,530);
-
+//table(400,530);
+//tableshelf(400,530);
+tabletopjoe(400,530);
 module roofmounts(){
     for (i=[-1:2:1])
         for(j=[0:120:360])
@@ -86,7 +86,17 @@ wallfloor(radius,tykkelse);
 doorhole();
 windowhole();
 smallwindowhole();
-}}
+}
+//bedpeg
+for(i=[-1:2:1]){
+    for(j=[250:800:1100]){
+rotate([0,0,240])
+    translate([1650,1030*i,j+140])
+        rotate([-90*i,0,0])
+    cylinder(150,30,70,center=true, $fn=6);
+    }
+}
+}
 module outerroof() { 
     difference(){
  color("grey")intersection(){    
@@ -137,9 +147,10 @@ module beds(num){
   circle(100);      
 }}
 dummy(radius-160);
+
 }
-for(i=[-1:2:1])
-    for(j=[250:800:1100])
+for(i=[-1:2:1]){
+    for(j=[250:800:1100]){
     rotate([0,0,240])
 translate([1650,i*1002,j])
 rotate([90,0,0])
@@ -152,8 +163,11 @@ minkowski(){
 }
 translate([00,140])circle(40);
 }
-}
 
+
+}
+}
+}
 module armchairs(number){for(k=[0:1:number-1]){
     translate([0000,0,0])rotate([0,0,40+(135/number)*k])translate([-1100,0,0])union(){
      translate([-100,0,300])for(i=[0:1:1]){
@@ -163,8 +177,8 @@ module armchairs(number){for(k=[0:1:number-1]){
      translate([250,0,0])color("chocolate")linear_extrude(height=20, center = false, convexity = 10, twist = 0)
     mirror([0,i,0])
      polygon([
-    [250*cos(0),0], 
-   [252*cos(10),252*sin(10)],
+    [230*cos(0),0], 
+   [242*cos(10),242*sin(10)],
    [258*cos(20),258*sin(20)],
    [261*cos(30),262*sin(30)],
         [250*cos(45),250*sin(45)],[100,210],[0,205],[-150,180],[-160,160],[-160,0]], 
@@ -173,6 +187,8 @@ module armchairs(number){for(k=[0:1:number-1]){
         translate([0,0,0])rotate([0,85,-5])cylinder(400,80,20,center=true);}
         sphere(10);
     }}}
+    translate([120,0,280])rotate([0,0,0])cube([50,500,50],center=true);
+     translate([-180,0,420])rotate([0,-20,0])cube([50,480,50],center=true);
     color("green")difference(){
         cylinder(500,350,315,center=false);
         translate([180,0,400])rotate([0,85,0])cylinder(750,255,240,center=true);
@@ -227,5 +243,20 @@ module table(side,heigth){color("chocolate")translate([0,0,heigth])
 color("chocolate")translate([side/sqrt(3),0,0])rotate([0,0,30])translate([-side/2,side/8,heigth/2])cube([side,side,20],center=true); 
 color("chocolate")translate([side/2/sqrt(3)+side/3,0,heigth/2])cylinder(20,side/3+0,side/3+0,center=true);   
           }}}
+          
+          module tabletopjoe(side,heigth){
+              color("chocolate")translate([0,0,heigth]){
+                  linear_extrude(22)resize([1000,1000])floor(radius);
+    for(i=[0:120:360]){
+      rotate([0,0,i])          
+    translate([side-20,0,-heigth/2])
+        rotate([0,-5,0])
+        cylinder(heigth,20,40,center=true);
+         }
+         }
+         color("chocolate")
+         translate([0,0,heigth/2])
+         linear_extrude(22)resize([700,700])floor(radius);
+      }
 module modularfurniture(){}
 module underground(){}
