@@ -1,0 +1,69 @@
+//Shape is from Saranggola: DIY Lightweight Kite, more or less
+//Only works for anlge=50degrees
+dim=5;
+enhet=300;
+vinkel=50;
+gods=2;
+$fn=6;
+
+difference(){
+minkowski(){
+intersection(){
+punkter();
+skjelett();
+}
+sphere(gods);
+}
+skjelett();
+}
+
+module punkter(){
+  sphere(dim*3);
+translate([enhet*0.23,0,0])sphere(dim*3);    
+translate([0.64*enhet,0,0])sphere(dim*3);
+       
+translate([0.64*enhet,enhet*0.75,0])sphere(dim*3);
+translate([0.64*enhet,-enhet*0.75,0])sphere(dim*3);   
+translate([1.5*enhet,0,0])sphere(dim*3); 
+translate([(0.23+(1.5-0.23)/2)*enhet,0,enhet*0.3])sphere(dim*3);
+    rotate([0,0,vinkel])
+translate([2*enhet,0,0])sphere(dim*3);
+    rotate([0,0,-vinkel])
+translate([2*enhet,0,0])sphere(dim*3);
+    rotate([0,0,vinkel])
+translate([2*enhet,0,0])
+rotate([0,0,-vinkel-90])
+    translate([1.3*enhet,0,0])sphere(dim*3);
+    rotate([0,0,-vinkel])
+translate([2*enhet,0,0])
+rotate([0,0,vinkel+90])
+    translate([1.3*enhet,0,0])sphere(dim*3);
+}
+
+module skjelett(){
+rotate([0,90,0])stang(1.5*enhet);
+translate([0.64*enhet,0,0])
+rotate([0,90,90])stang(enhet*sin(vinkel));
+translate([0.64*enhet,0,0])
+rotate([0,90,-90])stang(enhet*sin(vinkel));
+rotate([0,90,vinkel])stang(2*enhet);
+rotate([0,90,-vinkel])stang(2*enhet);
+translate([1.5*enhet,0,0])
+rotate([0,90,135])stang(0.3*enhet);
+translate([1.5*enhet,0,0])
+rotate([0,90,-135])stang(0.3*enhet);
+rotate([0,0,vinkel])
+translate([2*enhet,0,0])
+rotate([0,90,-vinkel-90])stang(1.32*enhet);
+rotate([0,0,-vinkel])
+translate([2*enhet,0,0])
+rotate([0,90,vinkel+90])stang(1.32*enhet);
+translate([enhet*0.23,0,0])
+rotate([0,90-vinkel*2/4,0])stang(0.7*enhet);
+translate([enhet*1.5,0,0])
+rotate([0,-90+vinkel*2/4,0])stang(0.7*enhet);
+}
+module stang(lengde){
+    linear_extrude(lengde)
+    square([dim,dim],center=true);    
+}
