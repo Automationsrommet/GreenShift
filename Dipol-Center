@@ -1,0 +1,73 @@
+
+//Printed-30m-dipol-center  by LB1AK
+
+//689
+
+core();
+//cover();
+module cover(){
+    color ("silver")
+ difference(){
+         resize([20,62,48])
+    sphere(10,$fn=5);
+    for(i=[-1:2:1])
+    translate([0,i*30,-20])
+    rotate([0,90,0])
+cylinder(30,21,21,center=true,$fn=6); 
+ translate([0,0,35])
+    rotate([18,90,18])
+cylinder(30,20,20,center=true,$fn=10);
+
+difference(){
+    resize([16,57,50])
+    sphere(10,$fn=5);
+    for(i=[-1:2:1])
+    translate([0,i*30,-20])
+    rotate([0,90,0])
+cylinder(30,20,20,center=true,$fn=6); 
+ translate([0,0,30])
+    rotate([18,90,18])
+cylinder(30,20,20,center=true,$fn=5);    
+}   
+for(o=[0:1:20])
+   translate([0,00,8+2.3-o])
+    rotate([90,0,0])
+cylinder(90,1+0.15*o,1+0.15*o,center=true,$fn=6); 
+}     
+}
+module core(){color("black")
+difference(){
+    resize([15,56,50])
+    sphere(10,$fn=5);
+    for(i=[-1:2:1])
+    translate([0,i*30,-20])
+    rotate([0,90,0])
+cylinder(30,20,20,center=true,$fn=6); 
+ translate([0,0,25])
+    rotate([18,90,18])
+cylinder(30,20,20,center=true,$fn=5);
+for(j=[0:1:5])
+    translate([0,00,8+j*2.3])
+    rotate([90,0,0])
+cylinder(90,1+j,1+j,center=true,$fn=6);
+
+translate([7,0,0])
+rotate([0,-20,0])
+cylinder(60,3,3,center=true,$fn=6);
+
+translate([7,0,0])
+cylinder(60,3,3,center=true,$fn=6);
+for(k=[-1:2:1])
+    for(l=[-1:2:1])
+translate([l*6,15*k,0])
+rotate([k*36,0,0])
+cylinder(60,3,3,center=true,$fn=6);
+    
+    for(m=[-1:2:1])
+    for(n=[0:1:1])
+translate([m*7,0,-10-n*7])
+rotate([90,0,0])
+cylinder(60,3+n,3+n,center=true,$fn=6);
+    
+}  
+}
